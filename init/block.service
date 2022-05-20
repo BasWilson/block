@@ -1,0 +1,11 @@
+[Unit]
+Description=Block Deamon service
+
+[Service]
+User=root
+WorkingDirectory=
+ExecStart=/home/baswilson/Repos/baswilson/block/bin/block_deamon
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
