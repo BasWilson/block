@@ -24,11 +24,11 @@ Core functionality of a Block such as services that monitor, setup and log what 
 - [x] Block initialization
 - [X] Image pulling
 - [X] Image running
-- [] Deamon monitoring service
+- [-] Deamon monitoring service
 
 **Nice to have features**
-- [] Git repo support
-- [] Builder images for building from source
+- [-] Git repo support
+- [-] Builder images for building from source
 
 #### API
 The API will manage authentication of users, setup Block instances and all other operations you would expect to see from a Platform as a Service API.

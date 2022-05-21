@@ -22,4 +22,4 @@ run_sim:
 	@echo "Running Block simulation image"
 	@docker run ${DOCKER_SIM_RUN_FLAGS} ${DOCKER_SIM_TAG}
 
-sim_all: compile build_sim run_sim
+sim: compile build_sim run_sim

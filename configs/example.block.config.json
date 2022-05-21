@@ -1,0 +1,16 @@
+{
+    "pull_mode": "image",
+    "image": {
+        "tag": "strm/helloworld-http"
+    },
+    "repo": {
+        "url": "",
+        "build_cmd": "",
+        "run_cmd": ""
+    },
+    "settings": {
+        "type": "webservice",
+        "port": 80,
+        "name": "example_webservice"
+    }
+}

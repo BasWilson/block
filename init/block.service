@@ -4,7 +4,7 @@ Description=Block Deamon service
 [Service]
 User=root
 WorkingDirectory=
-ExecStart=/home/baswilson/Repos/baswilson/block/bin/block_deamon
+ExecStart=/bin/block_monitor
 Restart=always
 
 [Install]
