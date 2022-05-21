@@ -14,6 +14,13 @@ func Run() {
 		panic("Settings.Image.Tag is not set")
 	}
 
+	// Remove old instance
+	exec.Command(
+		"docker",
+		"rm",
+		"-f",
+		ReadConfig.Settings.Name).CombinedOutput()
+
 	// Docker run command
 	output, err := exec.Command(
 		"docker",
@@ -23,6 +30,7 @@ func Run() {
 		"-p", "80:"+strconv.Itoa(int(ReadConfig.Settings.Port)),
 		"--env-file", "build/ci/dev/sample.env",
 		"--restart=always",
+		"--network=block_network",
 		ReadConfig.Image.Tag).CombinedOutput()
 
 	if err != nil {

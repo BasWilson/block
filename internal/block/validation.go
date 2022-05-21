@@ -3,7 +3,7 @@ package block
 import "runtime"
 
 func ValidateOS() {
-	if runtime.GOOS != "linux" {
-		panic("Block can only execute on Linux for now")
+	if runtime.GOOS != "linux" && runtime.GOOS != "darwin" {
+		panic("Block can only execute on Linux & Darwin for now, your os: " + runtime.GOOS)
 	}
 }

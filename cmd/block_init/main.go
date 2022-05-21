@@ -2,21 +2,24 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 	block "github.com/baswilson/block/internal/block"
-	"github.com/go-co-op/gocron"
 )
 
 func main() {
 	block.ValidateOS()
 	fmt.Println("[BLOCK] initializing block")
+
+	// Parse and add config to memory
 	block.ParseConfig()
+
+	// Pull image / source
 	block.Pull()
+
+	// Run image
 	block.Run()
 
+	// Start monitoring health
 	fmt.Println("[BLOCK] running monitor...")
-	s := gocron.NewScheduler(time.Local)
-	s.Every(30).Seconds().Do(block.HealthCheck)
-	s.StartBlocking()
+	block.StartHealthMonitoring()
 }

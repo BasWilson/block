@@ -3,31 +3,29 @@ package block
 import (
 	"fmt"
 	"net/http"
-	"os/exec"
+	"time"
+
+	"github.com/go-co-op/gocron"
 )
 
-func HealthCheck() {
+func StartHealthMonitoring() {
+	s := gocron.NewScheduler(time.Local)
+	s.Every(30).Seconds().Do(healthCheck)
+	s.StartBlocking()
+}
+
+// Checks if the webservice returns a response.
+// Result gets reported to API
+func healthCheck() {
 	fmt.Println("Checking health")
-	_, err := http.Get("https://" + ReadConfig.Settings.Name)
+	_, err := http.Get("http://" + ReadConfig.Settings.Name)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Webservice is offline. " + err.Error())
 		// Report error to API
 		// TODO
+	} else {
+		// Report success to API
+		// TODO
+		fmt.Println("Webservice is online")
 	}
-
-	// Image mode
-	if ReadConfig.PullMode == "image" {
-		output, err := exec.Command(
-			"docker",
-			"logs",
-			"--since=30s",
-			ReadConfig.Settings.Name).CombinedOutput()
-
-		if err != nil {
-			panic(fmt.Sprint(err) + ": " + string(output))
-		}
-
-		fmt.Println(string(output))
-	}
-
 }
