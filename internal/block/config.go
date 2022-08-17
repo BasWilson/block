@@ -18,11 +18,17 @@ type Settings struct {
 	Type string `json:"type" binding:"required"`
 }
 
+type EnvVariable struct {
+	Name string `json:"name" binding:"required"`
+	Value string `json:"value" binding:"required"`
+}
+
 type Config struct {
 	PullMode string   `json:"pull_mode" binding:"required,oneof=repo image"`
 	Image    Image    `json:"image" binding:"required,dive"`
 	Repo     Repo     `json:"repo" binding:"dive"`
 	Settings Settings `json:"settings" binding:"required,dive"`
+	Variables []EnvVariable     `json:"variables" binding:"dive"`
 }
 
 var Configs []Config
@@ -30,7 +36,11 @@ var Configs []Config
 func AddConfig(c *Config) *Config {
 	// Add config to list
 	Configs = append(Configs, *c)
-	fmt.Println("[BLOCK] Config added", c)
+	
+	// Write env variables to file
+	WriteEnvVariablesToFile(c)
+
+	fmt.Println("[BLOCK] Config added for: " + ": " + c.Settings.Name)
 	return c
 }
 
@@ -38,7 +48,8 @@ func RemoveConfig(c *Config) (Config, error) {
 	for i, v := range Configs {
 		if v.Settings.Name == c.Settings.Name {
 			Configs = append(Configs[:i], Configs[i+1:]...)
-			fmt.Println("[BLOCK] Config removed", c)
+			DeleteEnvVariablesFile(c)
+			fmt.Println("[BLOCK] Config removed for: " + c.Settings.Name)
 			return v, nil
 		}
 	}

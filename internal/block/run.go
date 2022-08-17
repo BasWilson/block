@@ -2,7 +2,6 @@ package block
 
 import (
 	"fmt"
-	"os"
 	"os/exec"
 	"strconv"
 )
@@ -17,9 +16,12 @@ func Run(c *Config) (error) {
 	if len(c.Image.Tag) == 0 {
 		return fmt.Errorf("Settings.Image.Tag is not set")
 	}
-	
+
 	var output []byte
 	var err error
+
+	// Add config to list
+	AddConfig(c)
 
 	if (c.Settings.Type == "webservice") {
 		output, err = exec.Command(
@@ -28,7 +30,7 @@ func Run(c *Config) (error) {
 			"-d",
 			"--name", c.Settings.Name,
 			"-p", "80:"+strconv.Itoa(int(c.Settings.Port)),
-			"--env-file", os.Getenv("BLOCK_ENV_PATH"),
+			"--env-file", c.Settings.Name + ".env",
 			"--restart=always",
 			"--network=block_network",
 			c.Image.Tag).CombinedOutput()
@@ -38,7 +40,7 @@ func Run(c *Config) (error) {
 			"run",
 			"-d",
 			"--name", c.Settings.Name,
-			"--env-file", os.Getenv("BLOCK_ENV_PATH"),
+			"--env-file", c.Settings.Name + ".env",
 			"--restart=always",
 			c.Image.Tag).CombinedOutput()
 	}
@@ -46,9 +48,6 @@ func Run(c *Config) (error) {
 	if err != nil {
 		return fmt.Errorf(fmt.Sprint(err) + ": " + string(output))
 	}
-
-	// Add config to list
-	AddConfig(c)
 
 	ImageId = string(output)
 	fmt.Println("[BLOCK] " + c.Settings.Name + " running: " + ImageId)
