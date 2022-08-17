@@ -47,6 +47,7 @@ func Run(c *Config) (error) {
 	}
 
 	if err != nil {
+		RemoveConfig(c)
 		return fmt.Errorf(fmt.Sprint(err) + ": " + string(output))
 	}
 
