@@ -3,6 +3,7 @@ package block
 import (
 	"io/ioutil"
 	"os"
+	"path"
 )
 
 func WriteEnvVariablesToFile(c *Config) {
@@ -12,7 +13,7 @@ func WriteEnvVariablesToFile(c *Config) {
 		envString += c.Variables[i].Name + "=" + c.Variables[i].Value + "\n"	
 	}
 
-	err := ioutil.WriteFile(c.Settings.Name + ".env", []byte(envString), 0644)
+	err := ioutil.WriteFile(path.Join(Base, c.Settings.Name + ".env"), []byte(envString), 0644)
 	if err != nil {
 		panic(err)
 	}
@@ -20,5 +21,5 @@ func WriteEnvVariablesToFile(c *Config) {
 
 
 func DeleteEnvVariablesFile(c *Config) {
-	os.Remove(c.Settings.Name + ".env")
+	os.Remove(path.Join(Base, c.Settings.Name + ".env"))
 }
