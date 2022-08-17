@@ -3,6 +3,7 @@ package block
 import (
 	"fmt"
 	"os/exec"
+	"path"
 	"strconv"
 )
 
@@ -30,7 +31,7 @@ func Run(c *Config) (error) {
 			"-d",
 			"--name", c.Settings.Name,
 			"-p", "80:"+strconv.Itoa(int(c.Settings.Port)),
-			"--env-file", c.Settings.Name + ".env",
+			"--env-file", path.Join(Base, c.Settings.Name + ".env"),
 			"--restart=always",
 			"--network=block_network",
 			c.Image.Tag).CombinedOutput()
@@ -40,7 +41,7 @@ func Run(c *Config) (error) {
 			"run",
 			"-d",
 			"--name", c.Settings.Name,
-			"--env-file", c.Settings.Name + ".env",
+			"--env-file", path.Join(Base, c.Settings.Name + ".env"),
 			"--restart=always",
 			c.Image.Tag).CombinedOutput()
 	}

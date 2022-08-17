@@ -32,6 +32,7 @@ type Config struct {
 }
 
 var Configs []Config
+var Base string
 
 func AddConfig(c *Config) *Config {
 	// Add config to list

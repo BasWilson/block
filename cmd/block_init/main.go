@@ -11,17 +11,15 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var Base string
-
 func main() {
 	block.ValidateOS()
 	
 	fmt.Println("[BLOCK] initializing block")
 
 	executable, _ := os.Executable();
-	Base := strings.Split(executable, "/bin/block_init")[0]
+	block.Base = strings.Split(executable, "/bin/block_init")[0]
 
-	godotenv.Load(path.Join(Base, "build/ci/dev/sim.env"))
+	godotenv.Load(path.Join(block.Base, "build/ci/dev/sim.env"))
 
 	// Start up webserver
 	webserver.SetupRouter()
