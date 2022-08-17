@@ -3,29 +3,40 @@ package block
 import (
 	"fmt"
 	"os/exec"
+	"regexp"
 )
 
-func Pull() {
-	fmt.Println("[BLOCK] Pulling image from")
+func Pull(c *Config) error {
+	fmt.Println("[BLOCK] Pulling image")
 
 	// Check for pull mode
-	if ReadConfig.PullMode == "repo" {
-		panic("PullMode 'repo' is not yet supported.")
-	} else if ReadConfig.PullMode == "image" {
-		image()
+	if c.PullMode == "repo" {
+		return fmt.Errorf("PullMode 'repo' is not yet supported")
+	} else if c.PullMode == "image" {
+		err := image(c)
+		if err != nil {
+			return err
+		}
 	}
+	return nil
 }
 
-func image() {
+func image(c *Config) error {
 	// Validate image tag
-	if len(ReadConfig.Image.Tag) == 0 {
+	if len(c.Image.Tag) == 0 {
 		panic("Image.Tag is not set")
 	}
 
-	// Docker pull command
-	output, err := exec.Command("docker", "pull", ReadConfig.Image.Tag).CombinedOutput()
-	if err != nil {
-		panic(fmt.Sprint(err) + ": " + string(output))
+	// Check if image is in registry
+	re := regexp.MustCompile(`[^/]+\.[^/.]+/([^/.]+/)?[^/.]+(:.+)?`)
+	if re.MatchString(c.Image.Tag) {
+		// Docker pull command
+		output, err := exec.Command("docker", "pull", c.Image.Tag).CombinedOutput()
+		if err != nil {
+			return fmt.Errorf(fmt.Sprint(err) + ": " + string(output))
+		}
+		fmt.Println(string(output))
 	}
-	fmt.Println(string(output))
+
+	return nil
 }

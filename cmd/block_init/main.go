@@ -4,22 +4,20 @@ import (
 	"fmt"
 
 	block "github.com/baswilson/block/internal/block"
+	"github.com/baswilson/block/internal/webserver"
+	"github.com/joho/godotenv"
 )
 
 func main() {
 	block.ValidateOS()
+	
 	fmt.Println("[BLOCK] initializing block")
+	
+	godotenv.Load("build/ci/dev/sim.env")
 
-	// Parse and add config to memory
-	block.ParseConfig()
+	// Start up webserver
+	webserver.SetupRouter()
 
-	// Pull image / source
-	block.Pull()
-
-	// Run image
-	block.Run()
-
-	// Start monitoring health
-	fmt.Println("[BLOCK] running monitor...")
+	// Start monitoring all services running under the block
 	block.StartHealthMonitoring()
 }

@@ -1,13 +1,9 @@
 package block
 
-import (
-	"encoding/json"
-	"io/ioutil"
-	"os"
-)
+import "fmt"
 
 type Image struct {
-	Tag string
+	Tag string `json:"tag"`
 }
 
 type Repo struct {
@@ -18,29 +14,33 @@ type Repo struct {
 
 type Settings struct {
 	Port int16  `json:"port"`
-	Name string `json:"name"`
-	Type string `json:"type"`
+	Name string `json:"name" binding:"required"`
+	Type string `json:"type" binding:"required"`
 }
 
 type Config struct {
-	PullMode string   `json:"pull_mode"`
-	Image    Image    `json:"image"`
-	Repo     Repo     `json:"repo"`
-	Settings Settings `json:"settings"`
+	PullMode string   `json:"pull_mode" binding:"required,oneof=repo image"`
+	Image    Image    `json:"image" binding:"required,dive"`
+	Repo     Repo     `json:"repo" binding:"dive"`
+	Settings Settings `json:"settings" binding:"required,dive"`
 }
 
-var ReadConfig Config
+var Configs []Config
 
-func ParseConfig() Config {
-	jsonFile, err := os.Open("configs/example.block.config.json")
-	if err != nil {
-		panic(err)
+func AddConfig(c *Config) *Config {
+	// Add config to list
+	Configs = append(Configs, *c)
+	fmt.Println("[BLOCK] Config added", c)
+	return c
+}
+
+func RemoveConfig(c *Config) (Config, error) {
+	for i, v := range Configs {
+		if v.Settings.Name == c.Settings.Name {
+			Configs = append(Configs[:i], Configs[i+1:]...)
+			fmt.Println("[BLOCK] Config removed", c)
+			return v, nil
+		}
 	}
-	defer jsonFile.Close()
-
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	json.Unmarshal(byteValue, &ReadConfig)
-
-	return ReadConfig
+	return Config{}, fmt.Errorf("[BLOCK] Config not found")
 }

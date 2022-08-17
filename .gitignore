@@ -1,2 +1,5 @@
 /bin
 /.vscode
+*.env
+!/build/ci/dev/*.env
+*.rest

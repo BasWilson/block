@@ -5,7 +5,8 @@ DOCKER_SIM_BUILD_FLAGS=--build-arg BLOCK_USER=${BLOCK_USER} \
 DOCKER_SIM_RUN_FLAGS=--privileged \
 					--network=block_network \
 					-v /var/run/docker.sock:/var/run/docker.sock \
-					--env-file build/ci/dev/sample.env
+					-p 8080:8080 \
+					--env-file build/ci/dev/sim.env
 
 clean:
 	go clean
@@ -14,6 +15,9 @@ clean:
 compile: clean
 	mkdir ./bin
 	go build -o ./bin ./cmd/...
+
+run: clean compile
+	./bin/block_init
 
 build_sim:
 	@echo "Building Block simulation image"
