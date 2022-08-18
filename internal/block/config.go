@@ -20,8 +20,8 @@ type Settings struct {
 }
 
 type EnvVariable struct {
-	Name string `json:"name"`
-	Value string `json:"value"`
+	Name string `json:"name" binding:"required"`
+	Value string `json:"value" binding:"required"`
 }
 
 type Config struct {
