@@ -24,9 +24,11 @@ Core functionality of a Block such as services that monitor, setup and log what 
 - [x] Block initialization
 - [X] Image pulling
 - [X] Image running
-- [X] Ability to command the Block via HTTP
 - [X] Running multiple images on one Block
 - [X] Health monitoring
+- [X] Ability to command the Block via HTTP
+- [X] Ability to get logs from Block via HTTP
+- [X] Ability to get list of running images on Block via HTTP
 
 **Nice to have features**
 - [-] Git repo support

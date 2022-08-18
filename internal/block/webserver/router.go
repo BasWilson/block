@@ -23,6 +23,8 @@ func SetupRouter() {
 		MaxAge:           12 * time.Hour,
 	}))
 
+	router.GET("/logs/:container", routes.Logs)
+	router.GET("/containers", routes.Containers)
 	router.POST("/action", routes.Action)
 	router.Run(":8080")
 }
