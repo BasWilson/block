@@ -30,7 +30,7 @@ func Run(c *Config) (error) {
 			"run",
 			"-d",
 			"--name", c.Settings.Name,
-			"-p", "80:"+strconv.Itoa(int(c.Settings.Port)),
+			"-p", strconv.Itoa(int(c.Settings.ContainerPort))+":"+strconv.Itoa(int(c.Settings.Port)),
 			"--env-file", path.Join(Base, c.Settings.Name + ".env"),
 			"--restart=always",
 			"--network=block_network",

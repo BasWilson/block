@@ -14,6 +14,7 @@ type Repo struct {
 
 type Settings struct {
 	Port int16  `json:"port"`
+	ContainerPort int16  `json:"container_port"`
 	Name string `json:"name" binding:"required"`
 	Type string `json:"type" binding:"required"`
 }
