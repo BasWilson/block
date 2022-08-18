@@ -26,7 +26,7 @@ func main() {
 
 	// Start monitoring all services running under the block
 	go block.StartHealthMonitoring()
-
+	
 	// Start up webserver
 	webserver.SetupRouter()
 }
