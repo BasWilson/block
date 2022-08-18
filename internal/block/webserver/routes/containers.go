@@ -15,6 +15,7 @@ func Containers(c *gin.Context) {
 		for x := 0; x < len(container.Variables); x++ {
 			container.Variables[x].Value = "*************";
 		}
+		containers[i] = container
 	}
 
 	c.JSON(200, gin.H{
