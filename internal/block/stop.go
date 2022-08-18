@@ -20,6 +20,10 @@ func Stop(c *Config) error {
 		return fmt.Errorf(fmt.Sprint(err) + ": " + string(output))
 	}
 
+	// Remove image
+	exec.Command("docker", "image", "rm", "-f", c.Image.Tag, "||", "true").Run()
+
+
 	// Remove config from list
 	RemoveConfig(c)
 

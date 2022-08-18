@@ -30,6 +30,10 @@ func image(c *Config) error {
 	// Check if image is in registry
 	re := regexp.MustCompile(`[^/]+\.[^/.]+/([^/.]+/)?[^/.]+(:.+)?`)
 	if re.MatchString(c.Image.Tag) {
+
+		// Remove old image
+		exec.Command("docker", "image", "rm", "-f", c.Image.Tag, "||", "true").Run()
+
 		// Docker pull command
 		output, err := exec.Command("docker", "pull", c.Image.Tag).CombinedOutput()
 		if err != nil {
