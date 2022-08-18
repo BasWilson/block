@@ -24,17 +24,13 @@ Core functionality of a Block such as services that monitor, setup and log what 
 - [x] Block initialization
 - [X] Image pulling
 - [X] Image running
+- [X] Ability to command the Block via HTTP
+- [X] Running multiple images on one Block
 - [X] Health monitoring
 
 **Nice to have features**
 - [-] Git repo support
 - [-] Builder images for building from source
-
-### API
-The API will manage authentication of users, setup Block instances and all other operations you would expect to see from a Platform as a Service API.
-
-### Web app
-The web app will be a dashboard where users will manage their Blocks.
 
 ## Figma Brainstorm file
 https://www.figma.com/file/x5uF613CR5OjIn5VgdSkhE/Block?node-id=0%3A1
