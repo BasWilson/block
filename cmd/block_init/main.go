@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	block "github.com/baswilson/block/internal/block"
-	"github.com/baswilson/block/internal/webserver"
+	"github.com/baswilson/block/internal/block/webserver"
 	"github.com/joho/godotenv"
 )
 
@@ -21,9 +21,12 @@ func main() {
 
 	godotenv.Load(path.Join(block.Base, "build/ci/dev/sim.env"))
 
-	// Start up webserver
-	webserver.SetupRouter()
+	// Register block with block registry
+	go block.RegisterBlock()
 
 	// Start monitoring all services running under the block
-	block.StartHealthMonitoring()
+	go block.StartHealthMonitoring()
+
+	// Start up webserver
+	webserver.SetupRouter()
 }
