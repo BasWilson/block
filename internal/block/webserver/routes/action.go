@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"fmt"
+
 	"github.com/baswilson/block/internal/block"
 	"github.com/gin-gonic/gin"
 )
@@ -15,6 +17,7 @@ func Action(c *gin.Context) {
 	var body ActionDto
 
 	if err := c.BindJSON(&body); err != nil {
+		fmt.Println(err)
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
@@ -30,6 +33,7 @@ func Action(c *gin.Context) {
 	}
 
 	if err != nil {
+		fmt.Println(err)
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
