@@ -32,8 +32,10 @@ type Config struct {
 	Variables []EnvVariable     `json:"variables" binding:"dive"`
 }
 
-var Configs []Config
 var Base string
+
+// create variable of slice configs
+var Configs = []Config{}
 
 func AddConfig(c *Config) *Config {
 	// Add config to list
