@@ -4,8 +4,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/baswilson/block/internal/block/webserver/middleware"
-	"github.com/baswilson/block/internal/block/webserver/routes"
+	"github.com/baswilson/block/internal/slave/webserver/middleware"
+	"github.com/baswilson/block/internal/slave/webserver/routes"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )

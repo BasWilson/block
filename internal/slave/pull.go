@@ -1,12 +1,14 @@
-package block
+package slave
 
 import (
 	"fmt"
 	"os/exec"
 	"regexp"
+
+	"github.com/baswilson/block/internal/shared"
 )
 
-func Pull(c *Config) error {
+func Pull(c *shared.Config) error {
 	fmt.Println("[BLOCK] Pulling image")
 
 	// Check for pull mode
@@ -21,7 +23,7 @@ func Pull(c *Config) error {
 	return nil
 }
 
-func image(c *Config) error {
+func image(c *shared.Config) error {
 	// Validate image tag
 	if len(c.Image.Tag) == 0 {
 		panic("Image.Tag is not set")

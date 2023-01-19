@@ -1,12 +1,13 @@
-package block
+package slave
 
 import (
 	"fmt"
 	"os/exec"
+
+	"github.com/baswilson/block/internal/shared"
 )
 
-
-func Stop(c *Config) error {
+func Stop(c *shared.Config) error {
 	fmt.Println("[BLOCK] Stopping image")
 
 	// Remove old instance
@@ -22,7 +23,6 @@ func Stop(c *Config) error {
 
 	// Remove image
 	exec.Command("docker", "image", "rm", "-f", c.Image.Tag, "||", "true").Run()
-
 
 	// Remove config from list
 	RemoveConfig(c)

@@ -1,4 +1,4 @@
-package block
+package slave
 
 import (
 	"fmt"
@@ -6,11 +6,10 @@ import (
 	"os"
 )
 
-
-func RegisterBlock () {
+func RegisterBlock() {
 	endpoint := os.Getenv("BLOCK_REGISTRATION_ENDPOINT")
 	if len(endpoint) == 0 {
-	fmt.Println("[BLOCK] Not registering block, no BLOCK_REGISTRATION_ENDPOINT set")
+		fmt.Println("[BLOCK] Not registering block, no BLOCK_REGISTRATION_ENDPOINT set")
 		return
 	}
 

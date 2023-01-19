@@ -13,4 +13,4 @@ WORKDIR /block
 
 # Copy compiled bins 
 COPY --from=builder ./block_build /block
-CMD bin/block_init
+CMD bin/slave

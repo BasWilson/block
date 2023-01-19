@@ -12,5 +12,17 @@
         "type": "webservice",
         "port": 80,
         "name": "testservice"
+    },
+    "loadmanager": {
+        "machineType": "low",
+        "maxInstances": 50,
+        "minInstances": 1,
+        "unitsPerInstance": 1,
+        "autoScaleDown": false,
+        "autoScaleUp": true,
+        "terminationScript": "echo 'bye bye'"
+    },
+    "variables": {
+        "MONGO_URL": "mongodb://mongo:27017/test"
     }
 }

@@ -3,7 +3,7 @@ package routes
 import (
 	"fmt"
 
-	"github.com/baswilson/block/internal/block"
+	block "github.com/baswilson/block/internal/slave"
 	"github.com/gin-gonic/gin"
 )
 
