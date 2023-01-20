@@ -9,7 +9,7 @@ DOCKER_SIM_RUN_FLAGS=--privileged \
 					--env-file build/ci/dev/sim.env
 
 clean:
-	rm -r ./bin
+	rm -f ./bin
 
 compile: clean
 	mkdir ./bin
