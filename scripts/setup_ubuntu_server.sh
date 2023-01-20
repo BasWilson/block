@@ -6,18 +6,36 @@ sudo snap install docker
 # install make
 sudo apt-get install make
 
-# Add rc.local script
-sudo echo '#!/bin/bash
-git -C /root/block checkout rework
-git -C /root/block pull
-make -C /root/block compile 
-/root/block/bin/slave' > /etc/rc.local
-
-# Make rc.local executable
-sudo chmod +x /etc/rc.local
+# Install go
+sudo snap install go --classic
 
 # Clone repo
 git clone https://github.com/baswilson/block.git /root/block
 
-# Reboot self
-sudo reboot
+# Add go script
+sudo echo '#!/bin/bash
+export GOPATH=/root/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin' > /etc/profile.d/go.sh
+
+# Make go script executable
+sudo chmod +x /etc/profile.d/go.sh
+
+# Add go path to bashrc
+sudo echo 'export GOPATH=/root/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin' >> ~/.bashrc
+
+# Add rc.local script
+sudo echo '#!/bin/bash
+/root/block/scripts/slave/compile.sh
+/root/block/scripts/slave/start.sh' > /etc/rc.local
+
+# Make executables
+sudo chmod +x /etc/rc.local
+sudo chmod +x /root/block/scripts/slave/compile.sh
+sudo chmod +x /root/block/scripts/slave/start.sh
+
+# Compile
+/root/block/scripts/slave/compile.sh
+
+# Reboot
+/root/block/scripts/slave/start.sh
