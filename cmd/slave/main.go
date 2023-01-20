@@ -2,25 +2,21 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"path"
-	"strings"
 
 	"github.com/baswilson/block/internal/shared"
 	"github.com/baswilson/block/internal/slave"
-	"github.com/baswilson/block/internal/slave/webserver"
 	"github.com/joho/godotenv"
 )
 
 func main() {
 	shared.ValidateOS()
 
-	fmt.Println("[BLOCK] initializing slave")
+	fmt.Println("[BLOCK_SLAVE] initializing slave")
 
-	executable, _ := os.Executable()
-	slave.Base = strings.Split(executable, "/bin/slave")[0]
+	shared.SetBasePath()
 
-	godotenv.Load(path.Join(slave.Base, "build/ci/dev/sim.env"))
+	godotenv.Load(path.Join(shared.Base, "build/ci/dev/sim.env"))
 
 	// Register block with block registry
 	go slave.RegisterBlock()
@@ -29,5 +25,5 @@ func main() {
 	go slave.StartHealthMonitoring()
 
 	// Start up webserver
-	webserver.SetupRouter()
+	slave.SetupRouter()
 }

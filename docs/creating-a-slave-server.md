@@ -1,6 +1,6 @@
 # Creating a slave server
 
-**This has been tested on ubuntu 20.04**
+**This has been tested on ubuntu 22.10**
 
 ## Setup
 Run the `/scripts/setup_ubuntu_slave.sh` script on the VPS.

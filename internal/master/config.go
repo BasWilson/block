@@ -1,4 +1,4 @@
-package slave
+package master
 
 import (
 	"fmt"
@@ -6,16 +6,14 @@ import (
 	"github.com/baswilson/block/internal/shared"
 )
 
-// create variable of slice configs
 var Config = shared.Config{}
 
-func SetConfig(c *shared.Config) *shared.Config {
-	// Add config to list
+func AddConfig(c *shared.Config) *shared.Config {
 	Config = *c
 
 	// Write env variables to file
 	shared.WriteEnvVariablesToFile(c)
 
-	fmt.Println("[BLOCK] Updated config")
+	fmt.Println("[BLOCK] Config applied successfully")
 	return c
 }

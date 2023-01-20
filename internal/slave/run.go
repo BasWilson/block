@@ -23,7 +23,7 @@ func Run(c *shared.Config) error {
 	var err error
 
 	// Add config to list
-	AddConfig(c)
+	SetConfig(c)
 
 	if c.Settings.Type == "webservice" {
 		output, err = exec.Command(
@@ -32,7 +32,7 @@ func Run(c *shared.Config) error {
 			"-d",
 			"--name", c.Settings.Name,
 			"-p", strconv.Itoa(int(c.Settings.ContainerPort))+":"+strconv.Itoa(int(c.Settings.Port)),
-			"--env-file", path.Join(Base, c.Settings.Name+".env"),
+			"--env-file", path.Join(shared.Base, c.Settings.Name+".env"),
 			"--restart=always",
 			"--network=block_network",
 			c.Image.Tag).CombinedOutput()
@@ -42,13 +42,12 @@ func Run(c *shared.Config) error {
 			"run",
 			"-d",
 			"--name", c.Settings.Name,
-			"--env-file", path.Join(Base, c.Settings.Name+".env"),
+			"--env-file", path.Join(shared.Base, c.Settings.Name+".env"),
 			"--restart=always",
 			c.Image.Tag).CombinedOutput()
 	}
 
 	if err != nil {
-		RemoveConfig(c)
 		return fmt.Errorf(fmt.Sprint(err) + ": " + string(output))
 	}
 

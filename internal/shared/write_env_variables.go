@@ -1,18 +1,21 @@
-package slave
+package shared
 
 import (
 	"io/ioutil"
 	"os"
 	"path"
-
-	"github.com/baswilson/block/internal/shared"
 )
 
-func WriteEnvVariablesToFile(c *shared.Config) {
+func WriteEnvVariablesToFile(c *Config) {
 	var envString string
 
 	for i := 0; i < len(c.Variables); i++ {
 		envString += c.Variables[i].Name + "=" + c.Variables[i].Value + "\n"
+	}
+
+	delErr := DeleteEnvVariablesFile(c)
+	if delErr == nil {
+		println("[BLOCK] Deleted old env file")
 	}
 
 	err := ioutil.WriteFile(path.Join(Base, c.Settings.Name+".env"), []byte(envString), 0644)
@@ -21,6 +24,6 @@ func WriteEnvVariablesToFile(c *shared.Config) {
 	}
 }
 
-func DeleteEnvVariablesFile(c *shared.Config) {
-	os.Remove(path.Join(Base, c.Settings.Name+".env"))
+func DeleteEnvVariablesFile(c *Config) error {
+	return os.Remove(path.Join(Base, c.Settings.Name+".env"))
 }

@@ -42,3 +42,5 @@ sudo chmod +x /root/block/scripts/slave/start.sh
 
 # Run start script
 /root/block/scripts/slave/start.sh &
+
+touch /root/setup_complete

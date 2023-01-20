@@ -24,9 +24,6 @@ func Stop(c *shared.Config) error {
 	// Remove image
 	exec.Command("docker", "image", "rm", "-f", c.Image.Tag, "||", "true").Run()
 
-	// Remove config from list
-	RemoveConfig(c)
-
 	ImageId = ""
 
 	return nil
