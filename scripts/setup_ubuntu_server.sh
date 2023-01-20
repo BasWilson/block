@@ -40,5 +40,5 @@ sudo chmod +x /root/block/scripts/slave/start.sh
 # Compile
 /root/block/scripts/slave/compile.sh
 
-# Reboot
-sudo reboot
+# Run start script
+/root/block/scripts/slave/start.sh &
