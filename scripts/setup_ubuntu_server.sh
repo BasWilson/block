@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Add this script to the VPS providers startup script
+
 # Install docker
 sudo snap install docker
 
@@ -11,6 +13,7 @@ sudo snap install go --classic
 
 # Clone repo
 git clone https://github.com/baswilson/block.git /root/block
+git -C /root/block checkout rework
 
 # Add go script
 sudo echo '#!/bin/bash

@@ -15,20 +15,7 @@ Start by inspecting the rc.local service
 ```bash
 systemctl status rc-local.service
 ```
-If anything failed here, try the commands manually:
+If anything failed here, run this for a more detailed log:
 ```bash
-git checkout rework # can be skipped
-git -C /root/block pull
-```
-```bash
-make -C /root/block compile
-```
-```bash
-/root/block/bin/slave
-```
-
-If there are no issues there, check the syslog
-
-```bash
-journalctl -u rc-local.service
+grep "rc.local" /var/log/syslog
 ```
