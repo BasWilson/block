@@ -38,4 +38,4 @@ sudo chmod +x /root/block/scripts/slave/start.sh
 /root/block/scripts/slave/compile.sh
 
 # Reboot
-/root/block/scripts/slave/start.sh
+sudo reboot
