@@ -17,6 +17,7 @@
         "machineType": "low",
         "maxInstances": 50,
         "minInstances": 1,
+        "standbyInstances": 2,
         "unitsPerInstance": 1,
         "autoScaleDown": false,
         "autoScaleUp": true,

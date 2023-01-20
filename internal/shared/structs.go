@@ -21,6 +21,7 @@ type LoadManager struct {
 	MachineType       string `json:"machineType"`       // low, medium, high
 	MaxInstances      int    `json:"maxInstances"`      // max number of instances
 	MinInstances      int    `json:"minInstances"`      // min number of instances
+	StandbyInstances  int    `json:"standbyInstances"`  // number of standby instances
 	UnitsPerInstance  int    `json:"unitsPerInstance"`  // units per instance
 	AutoScaleDown     bool   `json:"autoScaleDown"`     // auto scale down
 	AutoScaleUp       bool   `json:"autoScaleUp"`       // auto scale up

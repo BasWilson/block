@@ -10,7 +10,7 @@ DOCKER_SIM_RUN_FLAGS=--privileged \
 
 clean:
 	go clean
-	rm -r -f ./bin
+	rm -r ./bin
 
 compile: clean
 	mkdir ./bin
