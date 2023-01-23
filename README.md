@@ -32,5 +32,10 @@ A list of progress on the project and planned features that need to be made to m
 - [-] Git repo support
 - [-] Builder images for building from source
 
+### block_master
+
+- [X] Apply config
+- [] Get list of slaves
+
 ## Figma Brainstorm file
 https://www.figma.com/file/x5uF613CR5OjIn5VgdSkhE/Block?node-id=0%3A1
