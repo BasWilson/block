@@ -1,6 +1,7 @@
 # Block 📦
 
 ## I'm reworking this repo in the /rework branch
+## Ignore this readme
 
 ## What and why
 I'm planning for block to be a lightweight platform-as-a-service framework. 
