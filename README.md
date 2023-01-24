@@ -31,6 +31,8 @@ A list of progress on the project and planned features that need to be made to m
 **Nice to have features**
 - [-] Git repo support
 - [-] Builder images for building from source
+- [-] Adapters for cloud providers to setup VPS
+- [-] Ability to store vps images in bucket
 
 ### block_master
 
