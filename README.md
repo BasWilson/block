@@ -27,6 +27,7 @@ A list of progress on the project and planned features that need to be made to m
 - [X] Ability to command the Block via HTTP
 - [X] Ability to get logs from Block via HTTP
 - [X] Ability to get list of running images on Block via HTTP
+- [-] SSL Provisioning
 
 **Nice to have features**
 - [-] Git repo support
@@ -34,10 +35,14 @@ A list of progress on the project and planned features that need to be made to m
 - [-] Adapters for cloud providers to setup VPS
 - [-] Ability to store vps images in bucket
 
+
 ### block_master
 
 - [X] Apply config
-- [] Get list of slaves
+- [-] Get list of slaves
+- [-] SSL Provisioning
+- [-] Custom Domain support
+- [-] HTTP load balancer
 
 ## Figma Brainstorm file
 https://www.figma.com/file/x5uF613CR5OjIn5VgdSkhE/Block?node-id=0%3A1
