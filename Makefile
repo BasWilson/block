@@ -17,7 +17,7 @@ compile: clean
 	go build -o ./bin ./cmd/...
 
 run: clean compile
-	./bin/block_init
+	./bin/slave
 
 build_sim:
 	@echo "Building Block simulation image"

@@ -4,24 +4,22 @@
 ## Ignore this readme
 
 ## What and why
-I'm planning for block to be a lightweight platform-as-a-service framework. 
+I'm planning for block to make it easy to deploy and manage **load balanced** services. 
 
-This idea came to me because of my curiosity for the cloud, scaling, automation and my love for projects that are way to ambitious for a single developer. 
-I think services such as DigitalOcean's App Platform, Azure's App Service and Platform.sh etc are a great feat of engineering and I wish to learn at least a little more of how this is done.
+Most cloud platforms are quite complicated to get setup for load balancing, and even more complicated to manage. I want to make it easy to deploy and manage load balanced services. Kind of like Digitalocean's app platform, but with load balancing. 
+
+Block is the technical framework to make this happen, it is not a SaaS, PaaS or anything like that. Though in the future I might create a hosted version of Block, but that is not the goal of this project.
 
 Join me on this journey of creating Block!
 
 ## Technical stack
-The project has only just started, but my plan is to write most of the source code with GoLang, this way I can improve my GoLang skillset. I've been using JavaScript/TypeScript/NodeJs religiously for the past 5 years and I thinks it's time for a change.
-
-## Scripts
-I decided the best way to improve my Go skills is to write *everything* in Go, inluding helper scripts. Some scripts would definetly have made more sense to be written for bash.
+My plan is to write the source completely in Go, I reckon it's the best way to learn a new language. 
+There are also some shell scripts that are used to help with development and setup of servers. The master instance will have a sqlite database to store information. If I have time I plan on having a web interface called "Studio" for managing the master instance.
 
 ## Feature list and progress
 A list of progress on the project and planned features that need to be made to make Block a reality.
 
-### Block
-Core functionality of a Block such as services that monitor, setup and log what happens on a Block.
+### block_slave
 
 - [x] VPS Simulator docker image
 - [x] Block initialization
@@ -32,10 +30,22 @@ Core functionality of a Block such as services that monitor, setup and log what 
 - [X] Ability to command the Block via HTTP
 - [X] Ability to get logs from Block via HTTP
 - [X] Ability to get list of running images on Block via HTTP
+- [-] SSL Provisioning
 
 **Nice to have features**
 - [-] Git repo support
 - [-] Builder images for building from source
+- [-] Adapters for cloud providers to setup VPS
+- [-] Ability to store vps images in bucket
+
+
+### block_master
+
+- [X] Apply config
+- [-] Get list of slaves
+- [-] SSL Provisioning
+- [-] Custom Domain support
+- [-] HTTP load balancer
 
 ## Figma Brainstorm file
 https://www.figma.com/file/x5uF613CR5OjIn5VgdSkhE/Block?node-id=0%3A1
