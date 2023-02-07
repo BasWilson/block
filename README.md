@@ -1,8 +1,5 @@
 # Block 📦
 
-## I'm reworking this repo in the /rework branch
-## Ignore this readme
-
 ## What and why
 I'm planning for block to make it easy to deploy and manage **load balanced** services. 
 
@@ -35,17 +32,21 @@ A list of progress on the project and planned features that need to be made to m
 **Nice to have features**
 - [-] Git repo support
 - [-] Builder images for building from source
-- [-] Adapters for cloud providers to setup VPS
 - [-] Ability to store vps images in bucket
 
 
 ### block_master
 
 - [X] Apply config
+- [-] Adapters to manage slaves. (local, digitalocean, aws, gcp, azure etc)
+- [-] Nginx HTTP load balancer 
+- [-] Pre pulling images on slaves and then turning them off again
+- [-] Caching slave images in nearest blob storage (s3, gcs, azure blob storage)
 - [-] Get list of slaves
 - [-] SSL Provisioning
 - [-] Custom Domain support
-- [-] HTTP load balancer
+
+
 
 ## Figma Brainstorm file
 https://www.figma.com/file/x5uF613CR5OjIn5VgdSkhE/Block?node-id=0%3A1
